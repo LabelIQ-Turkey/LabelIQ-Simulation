@@ -1,1 +1,1 @@
-# LabelIQ--Simulation
+# LabelIQ-Simulation
