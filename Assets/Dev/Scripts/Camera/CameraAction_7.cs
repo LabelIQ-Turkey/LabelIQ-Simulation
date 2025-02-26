@@ -24,7 +24,7 @@ public class CameraAction_7 : CameraAction
     public void FocusQR()
     {
         CinemachineTransposer transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, focusQROffset, 3f)
+        DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, focusQROffset, 1.5f)
           .SetEase(Ease.Linear);
     }
 

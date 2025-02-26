@@ -42,6 +42,18 @@ public class CustomerAnimationLogic : MonoBehaviour
 
     }
 
+    public void StartQrScanning(bool status)
+    {
+        Animator.SetBool("qrscanning", status);
+
+    }
+
+    public void TriggerTakeProduct()
+    {
+        Animator.SetTrigger("takeproduct");
+
+    }
+
 
     public void StartRightHandIk(Transform ikposition)
     {
@@ -108,7 +120,7 @@ public class CustomerAnimationLogic : MonoBehaviour
         if (HeadIkTargetOn)
         {
             if (HeadIkTargetWeight < 1)
-                HeadIkTargetWeight += Time.deltaTime * 0.5f;
+                HeadIkTargetWeight += Time.deltaTime*2;
             Animator.SetLookAtWeight(HeadIkTargetWeight);
             Animator.SetLookAtPosition(HeadIkTarget.position);
         }
