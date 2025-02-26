@@ -29,62 +29,62 @@ public class ESL : MonoBehaviour
             {
                 new PriceMap
                 {
-                     Name="Üzüm",
+                     Name="Penne",
                      Text=20.99f,
                 },
                  new PriceMap
                 {
-                     Name="Portakal",
+                     Name="Patates Püresi",
                      Text=17.99f,
                 },
                   new PriceMap
                 {
-                     Name="Liçi",
+                     Name="Konserve",
                      Text=39.99f,
                 },
                  new PriceMap
                 {
-                     Name="Nar",
+                     Name="Pirinç",
                      Text=26.50f,
                 },
                   new PriceMap
                 {
-                     Name="Hint Ayvasý",
+                     Name="Makarna",
                      Text=43.99f,
                 },
                    new PriceMap
                 {
-                     Name="Ýncir",
+                     Name="Spagetti",
                      Text=35.50f,
                 },
                     new PriceMap
                 {
-                     Name="Erik",
+                     Name="Yumurta",
                      Text=10.99f,
                 },
                      new PriceMap
                 {
-                     Name="Kavun",
+                     Name="Un",
                      Text=27.99f,
                 },
                       new PriceMap
                 {
-                     Name="Armut",
+                     Name="Soslar",
                      Text=15.99f,
                 },
                        new PriceMap
                 {
-                     Name="Çilek",
+                     Name="Pirinç",
                      Text=26.10f,
                 },
                         new PriceMap
                 {
-                     Name="Avokado",
+                     Name="Panzati",
                      Text=60.99f,
                 },
                          new PriceMap
                 {
-                     Name="Guava",
+                     Name="Puray",
                      Text=74.99f,
                 },
                           new PriceMap
@@ -94,17 +94,17 @@ public class ESL : MonoBehaviour
                 },
                            new PriceMap
                 {
-                     Name="Kivi",
+                     Name="Basmatý",
                      Text=37.99f,
                 },
                             new PriceMap
                 {
-                     Name="Muz",
+                     Name="Elbows",
                      Text=26.50f,
                 },
                              new PriceMap
                 {
-                     Name="Ejder Meyvesi",
+                     Name="Marshmallow",
                      Text=55.50f,
                 },
 
