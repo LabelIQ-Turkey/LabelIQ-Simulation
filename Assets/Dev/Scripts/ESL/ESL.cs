@@ -34,7 +34,7 @@ public class ESL : MonoBehaviour
                 },
                  new PriceMap
                 {
-                     Name="Patates Püresi",
+                     Name="Patates Püre",
                      Text=17.99f,
                 },
                   new PriceMap
@@ -104,7 +104,7 @@ public class ESL : MonoBehaviour
                 },
                              new PriceMap
                 {
-                     Name="Marshmallow",
+                     Name="Marshmellow",
                      Text=55.50f,
                 },
 

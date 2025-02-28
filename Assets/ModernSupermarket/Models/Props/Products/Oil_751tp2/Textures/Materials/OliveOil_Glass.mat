@@ -108,6 +108,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _BumpScale: 1
     - _ChromaticAberration: 0.1
     - _ClearCoatMask: 0
@@ -131,6 +132,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RefractionIndex: 0.95
+    - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessPower: 1
     - _SmoothnessTextureChannel: 0

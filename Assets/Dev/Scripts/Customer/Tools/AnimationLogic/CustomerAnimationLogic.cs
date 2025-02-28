@@ -47,6 +47,11 @@ public class CustomerAnimationLogic : MonoBehaviour
         Animator.SetBool("qrscanning", status);
 
     }
+    public void StartNFCScanning(bool status)
+    {
+        Animator.SetBool("nfcscaning", status);
+
+    }
 
     public void TriggerTakeProduct()
     {
@@ -63,6 +68,7 @@ public class CustomerAnimationLogic : MonoBehaviour
     public void EndRightHandIK()
     {
         RightHandIkOn = false;
+        RightHandIkWeight = 0;
     }
 
     public void StartLeftHandIk(Transform ikposition)

@@ -16,10 +16,10 @@ public class Customer_Sahne_2_State : CustomerState
         yield return new WaitForSeconds(2f);
         Customer.CustomerAnimationLogic.StartLookIK(TargetEsl.transform);
         yield return new WaitForSeconds(1f);
-        CameraAction_8.Instance.LookEsl();
-        yield return new WaitForSeconds(2f);
+        CameraAction_8.Instance.LookEsl(); 
+        yield return new WaitForSeconds(4f);
         CameraAction_8.Instance.DeLookEsl();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         Customer.CustomerMovementLogic.DoMovement(Point.position);
         yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
         Customer.CustomerAnimationLogic.TriggerTakeProduct();
