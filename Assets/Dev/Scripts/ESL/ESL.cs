@@ -29,90 +29,241 @@ public class ESL : MonoBehaviour
             {
                 new PriceMap
                 {
-                     Name="Penne",
-                     Text=20.99f,
+                     Name="Tuz",
+                     Text=5.99f,
                 },
                  new PriceMap
                 {
-                     Name="Patates Püre",
-                     Text=17.99f,
-                },
-                  new PriceMap
+                     Name="Kek",
+                     Text=10.25f,
+                }, new PriceMap
                 {
-                     Name="Konserve",
-                     Text=39.99f,
-                },
-                 new PriceMap
-                {
-                     Name="Pirinç",
-                     Text=26.50f,
-                },
-                  new PriceMap
+                     Name="Cips",
+                     Text=30.00f,
+                }, new PriceMap
                 {
                      Name="Makarna",
-                     Text=43.99f,
-                },
-                   new PriceMap
+                     Text=17.99f,
+                }, new PriceMap
                 {
-                     Name="Spagetti",
-                     Text=35.50f,
+                     Name="Tohum",
+                     Text=25.99f,
                 },
-                    new PriceMap
+                 new PriceMap
                 {
-                     Name="Yumurta",
-                     Text=10.99f,
-                },
-                     new PriceMap
+                     Name="Zeytinyagi",
+                     Text=110.99f,
+                }, new PriceMap
+                {
+                     Name="Yag",
+                     Text=79.99f,
+                }, new PriceMap
+                {
+                     Name="Barbunya",
+                     Text=16.99f,
+                }, new PriceMap
+                {
+                     Name="PirinÃ§",
+                     Text=36.45f,
+                }, new PriceMap
+                {
+                     Name="Bezelye",
+                     Text=24.99f,
+                }, new PriceMap
+                {
+                     Name="Balik",
+                     Text=30.99f,
+                }, new PriceMap
+                {
+                     Name="P. PÃ¼resi",
+                     Text=15.10f,
+                }, new PriceMap
+                {
+                     Name="Kahve",
+                     Text=45.00f,
+                },new PriceMap
                 {
                      Name="Un",
+                     Text=65.99f,
+                }, new PriceMap
+                {
+                     Name="Biber",
+                     Text=19.99f,
+                }, new PriceMap
+                {
+                     Name="KetÃ§ap",
+                     Text=14.65f,
+                }, new PriceMap
+                {
+                     Name="P. Sekeri",
+                     Text=39.99f,
+                }, new PriceMap
+                {
+                     Name="E. Seker",
+                     Text=26.99f,
+                }, new PriceMap
+                {
+                     Name="Gevrek",
+                     Text=9.99f,
+                },new PriceMap
+                {
+                     Name="Kurabiye",
+                     Text=21.00f,
+                },new PriceMap
+                {
+                     Name="F. Ezmesi",
+                     Text=70.99f,
+                },new PriceMap
+                {
+                     Name="Bal",
+                     Text=95.50f,
+                },new PriceMap
+                {
+                     Name="Ã‡ikolata",
+                     Text=17.59f,
+                },new PriceMap
+                {
+                     Name="Yumurta",
+                     Text=85.99f,
+                },
+                new PriceMap
+                {
+                     Name="Meyve Suyu",
+                     Text=15.25f,
+                },
+                new PriceMap
+                {
+                     Name="Su",
+                     Text=12.50f,
+                },new PriceMap
+                {
+                     Name="Ekmek",
+                     Text=12.50f,
+                },new PriceMap
+                {
+                     Name="K. Mamasi",
+                     Text=195.00f,
+                },new PriceMap
+                {
+                     Name="Kedi Mama",
+                     Text=69.99f,
+                },new PriceMap
+                {
+                     Name="Ã‡amaÅŸÄ±r Suyu",
+                     Text=49.99f,
+                },new PriceMap
+                {
+                     Name="Biber",
+                     Text=15.99f,
+                },new PriceMap
+                {
+                     Name="Viski",
+                     Text=800.00f,
+                },new PriceMap
+                {
+                     Name="Vodka",
+                     Text=560.50f,
+                },new PriceMap
+                {
+                     Name="Rom",
+                     Text=760.00f,
+                },new PriceMap
+                {
+                     Name="Bira",
+                     Text=95.00f,
+                },new PriceMap
+                {
+                     Name="Gazoz",
+                     Text=14.99f,
+                },new PriceMap
+                {
+                     Name="Kola",
                      Text=27.99f,
                 },
-                      new PriceMap
+                new PriceMap
                 {
-                     Name="Soslar",
-                     Text=15.99f,
-                },
-                       new PriceMap
+                     Name="Soda",
+                     Text=55.50f,
+                },new PriceMap
                 {
-                     Name="Pirinç",
-                     Text=26.10f,
-                },
-                        new PriceMap
-                {
-                     Name="Panzati",
-                     Text=60.99f,
-                },
-                         new PriceMap
-                {
-                     Name="Puray",
-                     Text=74.99f,
-                },
-                          new PriceMap
+                     Name="Meyve Suyu",
+                     Text=85.99f,
+                },new PriceMap
                 {
                      Name="Mango",
-                     Text=57.99f,
-                },
-                           new PriceMap
+                     Text=115.00f,
+                },new PriceMap
                 {
-                     Name="Basmatý",
-                     Text=37.99f,
-                },
-                            new PriceMap
+                     Name="Ananas",
+                     Text=76.25f,
+                },new PriceMap
                 {
-                     Name="Elbows",
-                     Text=26.50f,
-                },
-                             new PriceMap
+                     Name="Karpuz",
+                     Text=45.00f,
+                },new PriceMap
                 {
-                     Name="Marshmellow",
-                     Text=55.50f,
+                     Name="Pattaya",
+                     Text=77.50f,
                 },
+                new PriceMap
+                {
+                     Name="Kivi",
+                     Text=26.99f,
+                },new PriceMap
+                {
+                     Name="Elma",
+                     Text=35.99f,
+                },new PriceMap
+                {
+                     Name="Armut",
+                     Text=30.00f,
+                },new PriceMap
+                {
+                     Name="Muz",
+                     Text=125.59f,
+                },new PriceMap
+                {
+                     Name="Limon",
+                     Text=50.00f,
+                },
+                new PriceMap
+                {
+                     Name="Patates",
+                     Text=40.00f,
+                },new PriceMap
+                {
+                     Name="SarÄ±msak",
+                     Text=145.50f,
+                },new PriceMap
+                {
+                     Name="Kabak",
+                     Text=26.99f,
+                },new PriceMap
+                {
+                     Name="Portakal",
+                     Text=52.00f,
+                },
+                new PriceMap
+                {
+                     Name="Seker",
+                     Text=52.00f,
+                },new PriceMap
+                {
+                     Name="Sabun",
+                     Text=32.50f,
+                },
+                new PriceMap
+                {
+                     Name="ZeytinyaÄŸÄ±",
+                     Text=140.50f,
+                },
+               
 
             };
         }
 
         TextProductPrice.text = PriceMaps.Find(x => string.Equals(x.Name, TextProductName.text, System.StringComparison.OrdinalIgnoreCase))
-            .Text.ToString();
+            .Text.ToString("0.00");
 
         WhiteTexture = CreateWhiteTexture(10, 10);
     }
@@ -140,7 +291,7 @@ public class ESL : MonoBehaviour
         bool thresold = true;
         for (int i = 0; i < 20; i++)
         {
-            // DoTween ile alpha deðerini deðiþtir
+            // DoTween ile alpha deï¿½erini deï¿½iï¿½tir
             DOTween.To(() => currentColor.a,
                        x => {
                            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, x);

@@ -10,6 +10,7 @@ public class CustomerAnimationLogic : MonoBehaviour
 
     private Transform RightHandTarget;
     private bool RightHandIkOn;
+            private bool RightHandIkRot;
     private float RightHandIkWeight;
 
      private Transform HeadIkTarget;
@@ -18,6 +19,8 @@ public class CustomerAnimationLogic : MonoBehaviour
 
     private Transform LeftHandTarget;
     private bool LeftHandIkOn;
+        private bool LeftHandIkRot;
+
     private float LeftHandIkWeight;
 
     void Awake()
@@ -60,9 +63,10 @@ public class CustomerAnimationLogic : MonoBehaviour
     }
 
 
-    public void StartRightHandIk(Transform ikposition)
+    public void StartRightHandIk(Transform ikposition,bool rot=false)
     {
         RightHandTarget = ikposition;
+        RightHandIkRot=rot;
         RightHandIkOn = true;
     }
     public void EndRightHandIK()
@@ -71,9 +75,10 @@ public class CustomerAnimationLogic : MonoBehaviour
         RightHandIkWeight = 0;
     }
 
-    public void StartLeftHandIk(Transform ikposition)
+    public void StartLeftHandIk(Transform ikposition,bool rot=false)
     {
        LeftHandTarget = ikposition;
+       LeftHandIkRot=rot;
         LeftHandIkOn = true;
     }
     public void EndLeftHandIK()
@@ -100,10 +105,22 @@ public class CustomerAnimationLogic : MonoBehaviour
                 RightHandIkWeight += Time.deltaTime*0.5f;
             Animator.SetIKPositionWeight(AvatarIKGoal.RightHand, RightHandIkWeight);
             Animator.SetIKPosition(AvatarIKGoal.RightHand, RightHandTarget.position);
+
+             if(RightHandIkRot)
+            {
+                Animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);
+                Animator.SetIKRotation(AvatarIKGoal.RightHand,RightHandTarget.rotation);
+            }
         }
         else
         {
-            Animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+            if (RightHandIkWeight >0)
+                RightHandIkWeight -= Time.deltaTime * 0.5f;
+            Animator.SetIKPositionWeight(AvatarIKGoal.RightHand, RightHandIkWeight);
+            Animator.SetIKRotationWeight(AvatarIKGoal.RightHand,RightHandIkWeight);
+             if(RightHandTarget)
+            Animator.SetIKPosition(AvatarIKGoal.RightHand, RightHandTarget.position);
+
         }
 
         if (LeftHandIkOn)
@@ -112,6 +129,11 @@ public class CustomerAnimationLogic : MonoBehaviour
                 LeftHandIkWeight += Time.deltaTime * 0.5f;
             Animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftHandIkWeight);
             Animator.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandTarget.position);
+            if(LeftHandIkRot)
+            {
+                Animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);
+                Animator.SetIKRotation(AvatarIKGoal.LeftHand,LeftHandTarget.rotation);
+            }
         }
         else
         {
@@ -120,6 +142,8 @@ public class CustomerAnimationLogic : MonoBehaviour
             if(LeftHandTarget)
             Animator.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandTarget.position);
             Animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftHandIkWeight);
+                            Animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,0);
+
         }
 
 

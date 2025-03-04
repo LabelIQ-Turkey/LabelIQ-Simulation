@@ -31,7 +31,7 @@ public class InteractionDoor : InteractionBase
         DoorOne.DOLocalRotate(targetRotationOne.eulerAngles, 0.75f);
         DoorSecond.DOLocalRotate(targetRotationSecond.eulerAngles, 0.75f).OnComplete(()=>
         {
-            CameraAction_7.Instance.FocusQR();
+            //CameraAction_7.Instance.FocusQR();
 
 
         });
