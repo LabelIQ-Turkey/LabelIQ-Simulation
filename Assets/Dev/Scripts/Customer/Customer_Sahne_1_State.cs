@@ -73,6 +73,7 @@ public class Customer_Sahne_1_State : CustomerState
         yield return new WaitForSeconds(5f);
         Customer.CustomerAnimationLogic.EndLookIK();
         Phone.SetActive(false);
+        Customer.CustomerAnimationLogic.FixSecondLayer();
         yield return new WaitForSeconds(2f);
         Customer.CustomerMovementLogic.DoMovement(Point2.position);
         VideoManager.Instance.PlayVoice(1,3);
@@ -114,10 +115,10 @@ public class Customer_Sahne_1_State : CustomerState
         fakeRightHandObject_1.transform.DOMove(TakeProductDropPoint.position,1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(1f);
         Customer.CustomerAnimationLogic.StartLookIK(fakeRightHandObject_1.transform);
-        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles+Vector3.up*90,.7f)
+        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles-Vector3.forward*90,.7f)
         .SetEase(Ease.Linear);
         yield return new WaitForSeconds(.7f);
-        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles-Vector3.up*90,.7f)
+        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles+Vector3.forward*90,.7f)
         .SetEase(Ease.Linear);
         yield return new WaitForSeconds(1.5f);
         Customer.CustomerAnimationLogic.EndRightHandIK();
@@ -126,13 +127,13 @@ public class Customer_Sahne_1_State : CustomerState
         aimIK.solver.IKPositionWeight=0;
         aimIK.enabled=true;
         DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 1, .7f);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.7f);
         Destroy(TakeProduct.gameObject);
         Customer.CustomerAnimationLogic.StartQrScanning(false);
         TakeProductOnCart.gameObject.SetActive(true);
-        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .4f)
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .7f)
            .SetEase(Ease.Linear); 
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.7f);
         aimIK.enabled=false;
         Customer.CustomerAnimationLogic.StartRightHandIk(fakeRightHandObject_1.transform,true);
         fakeRightHandObject_1.transform.DORotate(CarRightHandPoint.transform.eulerAngles,1f);
@@ -226,11 +227,11 @@ public class Customer_Sahne_1_State : CustomerState
 
         aimIK.solver.IKPositionWeight=0;
         aimIK.enabled=true;
-        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, .87f, .7f);
-        yield return new WaitForSeconds(1f);
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, .78f, .7f);
+        yield return new WaitForSeconds(.7f);
         FinalBuyProduct.gameObject.SetActive(false);
         FinalBuyProductHand.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         Customer.CustomerAnimationLogic.EndLookIK();
         Customer.CustomerAnimationLogic.StartQrScanning(false);
          DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .4f);
@@ -253,6 +254,7 @@ public class Customer_Sahne_1_State : CustomerState
          yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
          transform.DORotate(new Vector3(0,-194,0),.25f);
          PhoneLeft.SetActive(true);
+         Customer.CustomerAnimationLogic.BackSecondLayer();
          DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, .7f, .7f);
         yield return new WaitForSeconds(.7f);
          Customer.CustomerAnimationLogic.StartNFCScanning(true);

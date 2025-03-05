@@ -26,6 +26,8 @@ public class CustomerAnimationLogic : MonoBehaviour
     void Awake()
     {
         TryGetComponent(out Animator);
+
+       
     }
 
     public void RegisterMovementLogic(CustomerMovementLogic customerMovementLogic)
@@ -95,6 +97,15 @@ public class CustomerAnimationLogic : MonoBehaviour
     public void EndLookIK()
     {
         HeadIkTargetOn = false;
+    }
+
+    public void FixSecondLayer(){
+         Animator.SetLayerWeight(1,1); 
+
+    }
+    public void BackSecondLayer(){
+         Animator.SetLayerWeight(1,0.7f); 
+
     }
 
     private void OnAnimatorIK(int layerIndex)
