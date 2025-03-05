@@ -25,7 +25,7 @@ private AudioSource AudioSource;
     // Update is called once per frame
     void Update()
     {
-        
+        AudioSource.pitch=Time.timeScale;
     }
 
     public void PlayVoice(int index,float delay=0)

@@ -15,6 +15,7 @@ public class CameraAction_7 : CameraAction
     public CinemachineVirtualCamera virtualCamera6;
     public CinemachineVirtualCamera virtualCamera7;
     public CinemachineVirtualCamera virtualCamera8;
+    public CinemachineVirtualCamera virtualCamera9;
 
     private void Awake()
     {
@@ -81,6 +82,12 @@ public class CameraAction_7 : CameraAction
         cinemachineBrain.m_DefaultBlend.m_Time=0;
         virtualCamera7.gameObject.SetActive(false);
         virtualCamera8.gameObject.SetActive(true);
+    }
+     public void SwitchCamera9()
+    {
+        cinemachineBrain.m_DefaultBlend.m_Time=0;
+        virtualCamera8.gameObject.SetActive(false);
+        virtualCamera9.gameObject.SetActive(true);
     }
    
 

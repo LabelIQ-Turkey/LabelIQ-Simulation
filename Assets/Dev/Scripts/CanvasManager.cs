@@ -20,6 +20,13 @@ public class CanvasManager : MonoBehaviour
     public GameObject Scene_1_LoadingProductFind;
     public GameObject Scene_1_ProductFindFinded;
 
+    public CanvasGroup Scene_2_Main;
+     public GameObject Scene_2_1;
+      public GameObject Scene_2_2;
+       public GameObject Scene_2_3;
+        public GameObject Scene_2_4;
+        public Transform Scene4Tick;
+
     void Awake()
     {
         Instance=this;
@@ -64,6 +71,26 @@ public class CanvasManager : MonoBehaviour
         Scene_1_ProductFindFinded.SetActive(true);
         yield return new WaitForSeconds(3f);
         yield return HandCloseMove();
+        OpenCloseCanvasGroup(Scene_1_Main,false);
+
+    }
+
+    public IEnumerator Scene_2_Action()
+    {
+        yield return HandOpenMove();
+        OpenCloseCanvasGroup(Scene_2_Main,true);
+        yield return new WaitForSeconds(1f);
+        Scene_2_1.SetActive(false);
+         Scene_2_2.SetActive(true);
+         yield return new WaitForSeconds(2f);
+         Scene_2_2.SetActive(false);
+         Scene_2_3.SetActive(true);
+         yield return new WaitForSeconds(1f);
+         Scene_2_3.SetActive(false);
+         Scene_2_4.SetActive(true);
+         Scene4Tick.DOPunchScale(Vector3.one*1.25f,.4f);
+         yield return new WaitForSeconds(1f);
+         yield return HandCloseMove();
 
     }
 
