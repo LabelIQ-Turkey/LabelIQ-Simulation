@@ -8,6 +8,7 @@ public class CameraAction_7 : CameraAction
     public CinemachineBrain cinemachineBrain;
     public static CameraAction_7 Instance;
     public CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera eslCamera;
     public CinemachineVirtualCamera virtualCamera2;
     public CinemachineVirtualCamera virtualCamera3;
     public CinemachineVirtualCamera virtualCamera4;
@@ -31,6 +32,12 @@ public class CameraAction_7 : CameraAction
         yield break;
     }
    
+    public void SwitchEslCamera()
+    {
+        cinemachineBrain.m_DefaultBlend.m_Time=1f;
+        virtualCamera.gameObject.SetActive(false);
+        eslCamera.gameObject.SetActive(true);
+    }
     public void SwitchCamera2()
     {
         virtualCamera.gameObject.SetActive(false);
@@ -43,6 +50,7 @@ public class CameraAction_7 : CameraAction
     }
     public void Camere3StopFollow()
     {
+        virtualCamera3.Follow=null;
         virtualCamera3.gameObject.SetActive(false);
     }
      public void SwitchCamera4()

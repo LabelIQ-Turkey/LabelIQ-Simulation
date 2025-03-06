@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class VideoManager : MonoBehaviour
 {
-    public static VideoManager Instance;
+    public static bool En
+    {
+      get{
+        if(Instance==null)
+           Instance=FindObjectOfType<VideoManager>();
+        return Instance.Engilsh;
+      }
+    }
 
-private AudioSource AudioSource;
+    public static VideoManager Instance;
+    public bool Engilsh;
+
+    private AudioSource AudioSource;
     public List<AudioClip> SceneVoices;
 
 

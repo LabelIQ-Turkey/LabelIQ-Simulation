@@ -56,6 +56,16 @@ public class Customer_Sahne_1_State : CustomerState
 
     public override IEnumerator StateProgression()
     {
+        if(!VideoManager.En){
+ yield return StateProgressionTR();
+        }
+        else{
+        yield return    StateProgressionEn();
+        }
+      
+    }
+    public IEnumerator StateProgressionTR()
+    {
         VideoManager.Instance.PlayVoice(0,2);
         
         Customer.CustomerMovementLogic.DoMovement(Point.position);
@@ -64,7 +74,10 @@ public class Customer_Sahne_1_State : CustomerState
         Customer.CustomerAnimationLogic.StartLookIK(Qr.transform);
         Phone.SetActive(true);
         yield return new WaitForSeconds(1.5f);
-        StartCoroutine(CanvasManager.Instance.Scene_1_Action());
+        yield return CanvasManager.Instance.Scene_1_Action();
+        CameraAction_7.Instance.SwitchEslCamera();
+        yield return new WaitForSeconds(3f);
+
         yield return new WaitForSeconds(.5f);
         StartCoroutine(QrCameraMovement());
         Phone.SetActive(true);
@@ -188,7 +201,7 @@ public class Customer_Sahne_1_State : CustomerState
         }
         CameraAction_7.Instance.SwitchCamera6();
         yield return new WaitForSeconds(3f);
-        var price = ESL.PriceMaps.Find(x => x.Name.Equals(ProductLowerEsl.TextProductName.text, System.StringComparison.OrdinalIgnoreCase));
+        var price = ESL.PriceMaps.Find(x => x.Name.Equals(ProductLowerEsl.OriginalName, System.StringComparison.OrdinalIgnoreCase));
         StartCoroutine(ProductLowerEsl.ChangePriceText((price.Text-12).ToString("0.00")));
         ProductLowerEsl.ShowLed();
         yield return new WaitForSeconds(8.5f);
@@ -202,11 +215,11 @@ public class Customer_Sahne_1_State : CustomerState
         ChangeEslList.Sort((x,y)=>x.transform.position.x.CompareTo(y.transform.position.x));
         foreach(var item in ChangeEslList)
         {
-            var pricex = ESL.PriceMaps.Find(x => x.Name.Equals(item.TextProductName.text, System.StringComparison.OrdinalIgnoreCase));
+            var pricex = ESL.PriceMaps.Find(x => x.Name.Equals(item.OriginalName, System.StringComparison.OrdinalIgnoreCase));
            StartCoroutine(item.ChangePriceText(pricex.Text.ToString("0.00")));
            yield return new WaitForSeconds(.3f);
         }
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(12.5f);
 
         VideoManager.Instance.PlayVoice(5,2.5f);
         CameraAction_7.Instance.SwitchCamera8();
@@ -263,7 +276,224 @@ public class Customer_Sahne_1_State : CustomerState
            DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .4f);
         yield return new WaitForSeconds(.4f);
          yield return new WaitForSeconds(2f);
-          Customer.CustomerAnimationLogic.StartNFCScanning(false);
+        Customer.CustomerAnimationLogic.StartNFCScanning(false);
+         yield return new WaitForSeconds(1f);
+         PhoneLeft.SetActive(false);
+        Customer.CustomerMovementLogic.DoMovement(Point12.position);
+         yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+
+    }
+   public IEnumerator StateProgressionEn()
+    {
+        VideoManager.Instance.PlayVoice(0,1);
+        
+        Customer.CustomerMovementLogic.DoMovement(Point.position);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        Customer.CustomerAnimationLogic.StartQrScanning(true);
+        Customer.CustomerAnimationLogic.StartLookIK(Qr.transform);
+        Phone.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(CanvasManager.Instance.Scene_1_Action());
+        yield return new WaitForSeconds(.5f);
+        StartCoroutine(QrCameraMovement());
+        Phone.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        Customer.CustomerAnimationLogic.StartQrScanning(false);
+        yield return new WaitForSeconds(5f);
+        Customer.CustomerAnimationLogic.EndLookIK();
+        Phone.SetActive(false);
+        Customer.CustomerAnimationLogic.FixSecondLayer();
+        yield return new WaitForSeconds(2f);
+        Customer.CustomerMovementLogic.DoMovement(Point2.position);
+        VideoManager.Instance.PlayVoice(1,1);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        CameraAction_7.Instance.SwitchCamera2();
+        Customer.CustomerAnimationLogic.StartLeftHandIk(CarLeftHandPoint,true);
+        yield return new WaitForEndOfFrame();
+        CameraAction_7.Instance.virtualCamera2.Follow=null;
+         CameraAction_7.Instance.virtualCamera2.LookAt=null;
+        Customer.transform.DORotate(new Vector3(0,50,0),.5f).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(3f);
+        FocusEslSecondStep.ShowLed();
+        yield return new WaitForSeconds(1f);
+        Customer.CustomerAnimationLogic.StartLookIK(FocusEslSecondStep.transform);
+        yield return new WaitForSeconds(1f);
+        Customer.transform.DORotate(new Vector3(0,0,0),.3f).SetEase(Ease.Linear);
+         yield return new WaitForSeconds(.3f);
+          CameraAction_7.Instance.virtualCamera2.Follow=Customer.transform;
+         CameraAction_7.Instance.virtualCamera2.LookAt=Customer.transform;
+        CarSecondStep.SetParent(transform);
+        Customer.CustomerAnimationLogic.StartRightHandIk(CarRightHandPoint,true);
+        Customer.CustomerAnimationLogic.StartLeftHandIk(CarLeftHandPoint,true);
+        Customer.CustomerMovementLogic.DoMovement(Point3.position);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        Customer.CustomerMovementLogic.DoMovement(Point4.position);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+                CameraAction_7.Instance.SwitchCamera3();
+        GameObject fakeRightHandObject_1=GameObject.Instantiate(CarRightHandPoint.gameObject);
+        fakeRightHandObject_1.transform.SetPositionAndRotation(CarRightHandPoint.position,
+        Quaternion.Euler(new Vector3(12,10,-143f)));
+        
+        Customer.CustomerAnimationLogic.StartRightHandIk(fakeRightHandObject_1.transform,true);
+        fakeRightHandObject_1.transform.DOMove(TakeProduct.transform.position,.5f).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(.6f);
+        TakeProduct.gameObject.SetActive(true);
+        TakeProduct.transform.SetParent(TakeProductOnHand.parent);
+        TakeProduct.transform.localPosition=TakeProductOnHand.localPosition;
+        TakeProduct.transform.localEulerAngles=TakeProductOnHand.localEulerAngles;
+        fakeRightHandObject_1.transform.DOMove(TakeProductDropPoint.position,1f).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(1f);
+        Customer.CustomerAnimationLogic.StartLookIK(fakeRightHandObject_1.transform);
+        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles-Vector3.forward*90,.7f)
+        .SetEase(Ease.Linear);
+        yield return new WaitForSeconds(.7f);
+        fakeRightHandObject_1.transform.DORotate(fakeRightHandObject_1.transform.eulerAngles+Vector3.forward*90,.7f)
+        .SetEase(Ease.Linear);
+        yield return new WaitForSeconds(1.5f);
+        Customer.CustomerAnimationLogic.EndRightHandIK();
+        Customer.CustomerAnimationLogic.StartQrScanning(true);
+        Customer.CustomerAnimationLogic.EndLookIK();
+        aimIK.solver.IKPositionWeight=0;
+        aimIK.enabled=true;
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 1, .7f);
+        yield return new WaitForSeconds(.7f);
+        Destroy(TakeProduct.gameObject);
+        Customer.CustomerAnimationLogic.StartQrScanning(false);
+        TakeProductOnCart.gameObject.SetActive(true);
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .7f)
+           .SetEase(Ease.Linear); 
+        yield return new WaitForSeconds(.7f);
+        aimIK.enabled=false;
+        Customer.CustomerAnimationLogic.StartRightHandIk(fakeRightHandObject_1.transform,true);
+        fakeRightHandObject_1.transform.DORotate(CarRightHandPoint.transform.eulerAngles,1f);
+        fakeRightHandObject_1.transform.DOMove(CarRightHandPoint.position,1f);
+        yield return new WaitForSeconds(1f);
+        Customer.CustomerAnimationLogic.StartRightHandIk(CarRightHandPoint.transform,true);
+        CameraAction_7.Instance.Camere3StopFollow();
+        Customer.CustomerMovementLogic.DoMovement(Point5.position);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+       // Customer.CustomerMovementLogic.DoMovement(Point6.position);
+        //yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        Customer.CustomerMovementLogic.DoMovement(Point7.position);
+        VideoManager.Instance.PlayVoice(2,1.5f);
+        yield return new WaitForSeconds(1f);
+        CameraAction_7.Instance.SwitchCamera4();
+        Modem.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        ModemParticle.Play();
+        yield return CameraAction_7.Instance.Camera4Action();
+        ModemParticle.Stop();
+        
+        yield return new WaitForSeconds(10.5f);
+        VideoManager.Instance.PlayVoice(3,3);
+        yield return new WaitForSeconds(1f);
+        CameraAction_7.Instance.SwitchCamera5();
+        yield return new WaitForSeconds(2f);
+
+        ProductBuyA.Sort((x,y)=>y.transform.position.y.CompareTo(x.transform.position.y));
+        ProductBuyB.Sort((x,y)=>y.transform.position.y.CompareTo(x.transform.position.y));
+
+        for(int i=0;i<4;i++)
+        {
+            for(int y=0;y<2;y++)
+            {
+            ProductBuyA[0].SetActive(false);
+            GameObject spawnbuy1=Instantiate(BuyParticle,ProductBuyA[0].transform.position,Quaternion.identity);
+            spawnbuy1.GetComponent<ParticleSystem>().Play();
+            ProductBuyA.RemoveAt(0);
+            }
+            
+
+            yield return new WaitForSeconds(.2f);
+
+            ProductBuyB[0].SetActive(false);
+            GameObject spawnbuy2=Instantiate(BuyParticle,ProductBuyB[0].transform.position,Quaternion.identity);
+            spawnbuy2.GetComponent<ParticleSystem>().Play();
+            ProductBuyB.RemoveAt(0);
+
+            yield return new WaitForSeconds(.75f);
+            SadEmeogy.Play();
+
+        }
+        CameraAction_7.Instance.SwitchCamera6();
+        yield return new WaitForSeconds(1.5f);
+        var price = ESL.PriceMaps.Find(x => x.Name.Equals(ProductLowerEsl.OriginalName, System.StringComparison.OrdinalIgnoreCase));
+        StartCoroutine(ProductLowerEsl.ChangePriceText((price.Text-12).ToString("0.00")));
+        ProductLowerEsl.ShowLed();
+        yield return new WaitForSeconds(7f);
+        ProductLowerEsl.HideLed();
+        VideoManager.Instance.PlayVoice(4,2.5f);
+        CameraAction_7.Instance.SwitchCamera7();
+        ModemParticle.Play();
+        Customer.CustomerMovementLogic.DoMovement(Point9.position);
+        yield return new WaitForSeconds(4f);
+        ModemParticle.Stop();
+        ChangeEslList.Sort((x,y)=>x.transform.position.x.CompareTo(y.transform.position.x));
+        foreach(var item in ChangeEslList)
+        {
+            var pricex = ESL.PriceMaps.Find(x => x.Name.Equals(item.OriginalName, System.StringComparison.OrdinalIgnoreCase));
+           StartCoroutine(item.ChangePriceText(pricex.Text.ToString("0.00")));
+           yield return new WaitForSeconds(.3f);
+        }
+        yield return new WaitForSeconds(5.5f);
+
+        VideoManager.Instance.PlayVoice(5,2.5f);
+        CameraAction_7.Instance.SwitchCamera8();
+        Customer.CustomerMovementLogic.DoMovement(Point10.position);
+        yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        
+        CarSecondStep.transform.SetParent(null);
+        Customer.CustomerAnimationLogic.EndRightHandIK();
+        Customer.CustomerAnimationLogic.EndLeftHandIK();
+        Customer.CustomerAnimationLogic.StartLookIK(FinalBuyEsl.transform);
+        aimIkTargetOnChart.transform.position=AimIKFinalPoint.position;
+               yield return new WaitForSeconds(1f);
+        Customer.CustomerMovementLogic.DoMovement(Point11.position);
+         yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        
+
+        Customer.CustomerAnimationLogic.StartQrScanning(true);
+
+        aimIK.solver.IKPositionWeight=0;
+        aimIK.enabled=true;
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, .78f, .7f);
+        yield return new WaitForSeconds(.7f);
+        FinalBuyProduct.gameObject.SetActive(false);
+        FinalBuyProductHand.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.3f);
+        Customer.CustomerAnimationLogic.EndLookIK();
+        Customer.CustomerAnimationLogic.StartQrScanning(false);
+         DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .4f);
+        yield return new WaitForSeconds(1f);
+        
+         Customer.CustomerMovementLogic.DoMovement(Point12.position);
+         yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+        
+         Customer.CustomerAnimationLogic.StartQrScanning(true);
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 1f, .7f);
+        yield return new WaitForSeconds(.7f);
+        FinalBuyProductHand.SetActive(false);
+        FinalBuyProductCart.SetActive(true);
+        Customer.CustomerAnimationLogic.StartQrScanning(false);
+        DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0f, .5f);
+        yield return new WaitForSeconds(.5f);
+        CameraAction_7.Instance.SwitchCamera9();
+
+         Customer.CustomerMovementLogic.DoMovement(Point11.position);
+         yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);
+         transform.DORotate(new Vector3(0,-194,0),.25f);
+         PhoneLeft.SetActive(true);
+         Customer.CustomerAnimationLogic.BackSecondLayer();
+         DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, .7f, .7f);
+        yield return new WaitForSeconds(.7f);
+         Customer.CustomerAnimationLogic.StartNFCScanning(true);
+         StartCoroutine(CanvasManager.Instance.Scene_2_Action());
+         yield return new WaitForSeconds(3f);
+           DOTween.To(() => aimIK.solver.IKPositionWeight, x =>aimIK.solver.IKPositionWeight = x, 0, .4f);
+        yield return new WaitForSeconds(.4f);
+         yield return new WaitForSeconds(2f);
+        Customer.CustomerAnimationLogic.StartNFCScanning(false);
+         yield return new WaitForSeconds(1f);
          PhoneLeft.SetActive(false);
         Customer.CustomerMovementLogic.DoMovement(Point12.position);
          yield return new WaitUntil(() => Customer.CustomerMovementLogic.CurrentState is CustomerMovementLogicIdleState);

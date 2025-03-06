@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ESL : MonoBehaviour
 {
+    public string OriginalName;
     public static Texture WhiteTexture;
     public static List<ESL> ALLEsls;
     public static List<PriceMap> PriceMaps;
@@ -18,8 +19,76 @@ public class ESL : MonoBehaviour
     public TextMeshPro TextProductName;
     public TextMeshPro TextProductPrice;
 
+    public Dictionary<string,string> EnlishWords;
+
     private void Awake()
     {
+
+     if(EnlishWords==null)
+     {
+EnlishWords=new Dictionary<string, string>();
+       EnlishWords.Add("Tuz".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Salt");
+       EnlishWords.Add("Kek".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Cake");
+              EnlishWords.Add("Cips".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Chips");
+       EnlishWords.Add("Makarna".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pasta");
+              EnlishWords.Add("Tohum".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Seed");
+                     EnlishWords.Add("zeytinyagi".ToLower(System.Globalization.CultureInfo.GetCultureInfo("Tr")),"Olive Oil");
+       EnlishWords.Add("Cicek Yagi".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Oil");
+       EnlishWords.Add("Yag".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Oil");
+              EnlishWords.Add("Barbunya".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Kidney bean");
+              EnlishWords.Add("Pirinç".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Rice");
+EnlishWords.Add("Bezelye".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pea");
+EnlishWords.Add("Balik".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Fish");
+EnlishWords.Add("P. Püresi".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Mashed Patotoes");
+EnlishWords.Add("Kahve".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Coffie");
+EnlishWords.Add("Un".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Flour");
+EnlishWords.Add("Biber".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pepper");
+EnlishWords.Add("Ketcap".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Ketchup");
+EnlishWords.Add("Ketçap".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Ketchup");
+
+EnlishWords.Add("P. Sekeri".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Powdered Sugar");
+EnlishWords.Add("E. Seker".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Brown sugar");
+EnlishWords.Add("Gevrek".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Cereal");
+EnlishWords.Add("Kurabiye".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Cookie");
+EnlishWords.Add("F. Ezmesi".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Peanut Butter");
+EnlishWords.Add("Bal".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Honey");
+EnlishWords.Add("Çikolata".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Chocolate");
+EnlishWords.Add("Yumurta".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Eggs");
+EnlishWords.Add("Meyve Suyu".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Fruit Juice");
+EnlishWords.Add("Su".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Water");
+EnlishWords.Add("Ekmek".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Bread");
+EnlishWords.Add("K. Mamasi".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Dog Food");
+EnlishWords.Add("Kedi Mama".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Cat Food");
+EnlishWords.Add("Çamasir Suyu".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Bleach");
+EnlishWords.Add("Viski".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Whiskey");
+EnlishWords.Add("Vodka".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Vodka");
+EnlishWords.Add("Rom".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Rom");
+EnlishWords.Add("Bira".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Beer");
+EnlishWords.Add("Gazoz".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Soda");
+EnlishWords.Add("Kola".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Coke");
+EnlishWords.Add("Soda".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Soda");
+EnlishWords.Add("Mango".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Mango");
+EnlishWords.Add("Ananas".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pineapple");
+EnlishWords.Add("Karpuz".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Watermelon");
+EnlishWords.Add("Pattaya".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pattaya");
+EnlishWords.Add("Kivi".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Kiwi");
+EnlishWords.Add("Elma".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Apple");
+EnlishWords.Add("Armut".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Pear");
+EnlishWords.Add("Muz".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Banana");
+EnlishWords.Add("Limon".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Lime");
+EnlishWords.Add("Patates".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Patato");
+EnlishWords.Add("sarimsak".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Lime");
+EnlishWords.Add("Kabak".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Courgette");
+EnlishWords.Add("Portakal".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Orange");
+EnlishWords.Add("Seker".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Sugar");
+EnlishWords.Add("Sabun".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Soap");
+EnlishWords.Add("Zeytinyağı".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Olive Oil");
+EnlishWords.Add("Kavun".ToLower(System.Globalization.CultureInfo.CurrentCulture),"Melon");
+
+
+     }
+       
+
         ALLEsls ??= new List<ESL>();
         ALLEsls.Add(this);
 
@@ -250,20 +319,26 @@ public class ESL : MonoBehaviour
                 },new PriceMap
                 {
                      Name="Sabun",
-                     Text=32.50f,
+                     Text=18.50f,
                 },
                 new PriceMap
                 {
                      Name="Zeytinyağı",
-                     Text=140.50f,
+                     Text=80.50f,
                 },
                
 
             };
         }
+        OriginalName=TextProductName.text;
+          if(VideoManager.En)
+          {
+               TextProductName.text=EnlishWords[TextProductName.text.ToLower()];
+          }
 
-        TextProductPrice.text = PriceMaps.Find(x => string.Equals(x.Name, TextProductName.text, System.StringComparison.OrdinalIgnoreCase))
-            .Text.ToString("0.00");
+        TextProductPrice.text = PriceMaps.Find(x => string.Equals(x.Name,OriginalName, System.StringComparison.OrdinalIgnoreCase))
+            .Text.ToString("0.00")+"$";
+     TextProductPrice.fontSize-=2f;
 
         WhiteTexture = CreateWhiteTexture(10, 10);
     }
@@ -324,7 +399,7 @@ public class ESL : MonoBehaviour
                   .SetEase(Ease.InOutSine);
 
         ScreenBack.material.SetColor("_BaseColor", tempback);
-        TextProductPrice.text = text;
+        TextProductPrice.text = text+"$";
         TextProductName.gameObject.SetActive(true);
         TextProductPrice.gameObject.SetActive(true);
 

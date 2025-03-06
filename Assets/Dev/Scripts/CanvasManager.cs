@@ -17,6 +17,9 @@ public class CanvasManager : MonoBehaviour
     public GameObject Scene_1_LoadingScreen;
     public GameObject Scene_1_FindProductScreen;
     public TMP_InputField Scene_1_ProductFindScreenInputField;
+    public TextMeshProUGUI Scene_1_RayonInfo;
+     public TextMeshProUGUI Scene_1_ProductName;
+     public TextMeshProUGUI Scene_1_ProductPrice;
     public GameObject Scene_1_LoadingProductFind;
     public GameObject Scene_1_ProductFindFinded;
 
@@ -27,6 +30,13 @@ public class CanvasManager : MonoBehaviour
         public GameObject Scene_2_4;
         public Transform Scene4Tick;
 
+         public TextMeshProUGUI Scene_2_NfcReading;
+         public TextMeshProUGUI Scene_2_ProductName;
+          public TextMeshProUGUI Scene_2_ProductPrice;
+       public TextMeshProUGUI Scene_2_PayButtonText;
+       public TextMeshProUGUI Scene_2_PayingTitle;
+       public TextMeshProUGUI Scene_2_PayCompleteTitle;
+
     void Awake()
     {
         Instance=this;
@@ -35,7 +45,18 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(VideoManager.En){
+            Scene_1_RayonInfo.text="Aisle (A)";
+            Scene_1_ProductName.text="Peas";
+             Scene_1_ProductPrice.text="5.99$";
+
+             Scene_2_NfcReading.text="Tag \n Reading";
+             Scene_2_PayButtonText.text="Pay Now!";
+             Scene_2_ProductName.text="Eggs";
+             Scene_2_ProductPrice.text="12.99$";
+             Scene_2_PayCompleteTitle.text="Payment \n Completed";
+             Scene_2_PayingTitle.text=" Progressing";
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +67,7 @@ public class CanvasManager : MonoBehaviour
 
     public IEnumerator Scene_1_Action()
     {
+
         yield return HandOpenMove();
         OpenCloseCanvasGroup(Scene_1_Main,true);
         yield return new WaitForSeconds(.5f);
@@ -61,7 +83,7 @@ public class CanvasManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Scene_1_LoadingScreen.SetActive(false);
         Scene_1_FindProductScreen.SetActive(true);
-        string text="Bezelye";
+        string text=VideoManager.En?"Pea" : "Bezelye";
         for(int i=0;i<text.Length;i++){
             Scene_1_ProductFindScreenInputField.text+=text[i].ToString();
             yield return new WaitForSeconds(.1f);
